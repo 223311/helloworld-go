@@ -6,7 +6,7 @@ steps:
   - name: build
     image: golang
     commands:
-      - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' droneex-k8.yaml
+      - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' app-k8.yaml
       - go clean
       - go build main.go
       - ls -lart
@@ -30,7 +30,7 @@ steps:
       kubernetes_token:
         from_secret: k8s_token
     commands:
-      - kubectl apply -f droneex-k8.yaml  --validate=false
+      - kubectl apply -f app-k8.yaml  --validate=false
 
   - name: notify-sucess
     image: sankar31/baseimg:1.0
