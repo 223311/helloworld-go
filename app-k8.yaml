@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goapp
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: goapp
+    spec:
+      containers:
+        - name: goapp
+          image: sankar31/hello-go:DRONE_BUILD_NUMBER
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+  selector:
+    matchLabels:
+      app: goapp
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: goapp-service
+  labels:
+    name: goapp-service
+spec:
+  ports:
+    - port: 2093
+      targetPort: 8080
+      protocol: TCP
+      name: goappport
+  selector:
+    app: goapp
+  type: LoadBalancer
