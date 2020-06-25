@@ -30,7 +30,18 @@ steps:
         from_secret: k8s_token
     commands:
       - kubectl apply -f app-k8.yaml  --validate=false
-
+  - name : pushgit
+    image : alpine/git
+    commands:
+      - git clone https://223311:123%40Sinku@github.com/223311/helloworld-go.git
+      - git config --global user.email 'panda.bhabani31@gmail.com'
+      - cd argo-play
+      - ls -lart
+      - sed -i 's/hello-go:.*/hello-go:${DRONE_BUILD_NUMBER}/g' k8/deployments/deployments.yaml
+      - git add .
+      - git commit -m 'Publish new version ${DRONE_BUILD_NUMBER}'
+      - git status
+      - git push | sleep 5
   - name: notify-sucess
     image: sankar31/baseimg:1.0
     commands:
