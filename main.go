@@ -7,7 +7,7 @@ import (
 )
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello Guest V1")
+	fmt.Fprintf(w, "Hello Guest V2")
 	fmt.Println("Endpoint Hit: homePage")
 }
 
