@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: argogoplay-service
+spec:
+  selector:
+    app: argogoplay-app
+  ports:
+    - protocol: TCP
+      port: 8427
+      targetPort: 8080
+      name: argogoplayport
+  type: LoadBalancer
