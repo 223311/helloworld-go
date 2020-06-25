@@ -35,7 +35,7 @@ steps:
     commands:
       - git clone https://223311:123%40Sinku@github.com/223311/helloworld-go.git
       - git config --global user.email 'panda.bhabani31@gmail.com'
-      - cd argo-play
+      - cd helloworld-go
       - ls -lart
       - sed -i 's/hello-go:.*/hello-go:${DRONE_BUILD_NUMBER}/g' k8/deployments/deployments.yaml
       - git add .
