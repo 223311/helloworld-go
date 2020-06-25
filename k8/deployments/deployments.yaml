@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argogoplay-deploy
+  labels:
+    app: argogoplay-app
+  annotations:
+spec:
+  selector:
+    matchLabels:
+      app: argogoplay-app
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: argogoplay-app
+    spec:
+      containers:
+      - name: argogoplay-app
+        image: sankar31/hello-go:160
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "999Mi"
+            cpu: "999m"
