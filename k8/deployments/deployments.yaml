@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: argogoplay-app
-        image: sankar31/hello-go:9
+        image: sankar31/hello-go:12
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
