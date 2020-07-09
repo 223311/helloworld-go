@@ -1,2 +1,2 @@
 # helloworld-go
-Hello world example go
+Hello world example in go lang
