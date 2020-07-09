@@ -24,7 +24,6 @@ spec:
     matchLabels:
       app: goapp
 
-
 ---
 apiVersion: v1
 kind: Service
